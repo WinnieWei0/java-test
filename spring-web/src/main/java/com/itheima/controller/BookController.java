@@ -2,11 +2,13 @@ package com.itheima.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 //@Controller
 //@ResponseBody
 @RestController // @Controller+@ResponseBody的写法
 @RequestMapping("/books") // 简化写法，把下列接口提取出来
+@EnableWebMvc
 public class BookController {
     //    保存
 //    @RequestMapping(method = RequestMethod.POST)
