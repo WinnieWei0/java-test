@@ -1,4 +1,5 @@
 com\itheima\config\ServletContainerInitConfig.class
 com\itheima\controller\BookController.class
+com\itheima\config\SpringMvcSuport.class
 com\itheima\domain\Book.class
 com\itheima\config\SpringMvcConfig.class

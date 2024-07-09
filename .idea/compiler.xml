@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="crud-demo" />
+        <module name="ssm" />
         <module name="test1" />
         <module name="spring-web" />
-        <module name="crud-demo" />
       </profile>
     </annotationProcessing>
   </component>
