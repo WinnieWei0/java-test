@@ -1,40 +1,50 @@
 package com.itheima.domain;
 
 public class Book {
-    private String title;
-    private String author;
-    private String id;
+    private Integer id;
+    private String name;
+    private String type;
+    private String description;
 
     @Override
     public String toString() {
         return "Book{" +
-                "author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                ", id='" + id + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
