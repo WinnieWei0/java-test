@@ -10,6 +10,7 @@
         <module name="ssm" />
         <module name="test1" />
         <module name="spring-web" />
+        <module name="ssm02" />
       </profile>
     </annotationProcessing>
   </component>
