@@ -10,10 +10,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = SpringConfig.class)
+@RunWith(SpringJUnit4ClassRunner.class) // 指定用哪个运行器进行测试
+@ContextConfiguration(classes = SpringConfig.class) //配置测试内容，指定测试业务层代码
 public class BookServiceTest {
-    @Autowired
+    @Autowired // 自动装配，controller和service需要装配
     private BookService bookService;
 
     @Test

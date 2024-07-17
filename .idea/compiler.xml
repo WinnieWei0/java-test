@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="crud-demo" />
+        <module name="ssm整合加注释" />
+        <module name="spring-web (1)" />
         <module name="ssm" />
         <module name="test1" />
         <module name="spring-web" />
-        <module name="ssm02" />
+        <module name="spring-web (2)" />
       </profile>
     </annotationProcessing>
   </component>

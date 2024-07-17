@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service // 业务层
 public class BookServiceImpl implements BookService {
-    @Autowired
-    private BookDao bookDao;
+    @Autowired // 自动装配，controller和service需要装配
+    private BookDao bookDao; // 获取数据层类
 
     @Override
     public boolean saveBook(Book book) {

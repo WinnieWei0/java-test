@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/books")
+@RestController // 标识Restful风格表现层
+@RequestMapping("/books") // 公共请求前缀
 public class BookController {
-    @Autowired
+    @Autowired // 自动装配，controller和service需要装配
 
     private BookService bookService;
 
@@ -20,6 +20,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
+//    PathVariable解析出路径参数，如/users/{id}
     public boolean delete(@PathVariable Integer id){
         return bookService.deleteBookById(id);
     }

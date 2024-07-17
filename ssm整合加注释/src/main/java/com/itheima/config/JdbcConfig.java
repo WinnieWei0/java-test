@@ -5,7 +5,9 @@ import org.springframework.context.annotation.Bean;
 
 import javax.sql.DataSource;
 
+//数据库配置文件
 public class JdbcConfig {
+//    values引用resources内的常量配置
     @Value("${jdbc.driver}")
     private String driver;
     @Value("${jdbc.url}")
@@ -15,6 +17,7 @@ public class JdbcConfig {
     @Value("${jdbc.password}")
     private String password;
 
+//    设置数据源
     @Bean
     public DataSource dataSource() {
         DruidDataSource dataSource=new DruidDataSource();
