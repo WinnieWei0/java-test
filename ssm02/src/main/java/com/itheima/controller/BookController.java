@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/books")
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -35,6 +35,8 @@ public class BookController {
 
     @GetMapping
     public List<Book> getAll(){
+        System.out.println(1111);
+        System.out.println(bookService.getAll());
         return bookService.getAll();
     }
 }

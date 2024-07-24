@@ -19,11 +19,14 @@
 
   <el-dialog v-model="dialogFormVisible" :title="title" width="500">
     <el-form :model="form">
-      <el-form-item label="name" :label-width="formLabelWidth">
-        <el-input v-model="form.name" autocomplete="true" />
+      <el-form-item label="type" :label-width="formLabelWidth">
+        <el-input v-model="form.type" autocomplete="true" :disable="dialogType== 'view'"/>
       </el-form-item>
-      <el-form-item label="author" :label-width="formLabelWidth">
-        <el-input v-model="form.author" autocomplete="off" />
+      <el-form-item label="name" :label-width="formLabelWidth">
+        <el-input v-model="form.name" autocomplete="off"  :disable="dialogType== 'view'"/>
+      </el-form-item>
+      <el-form-item label="description" :label-width="formLabelWidth">
+        <el-input v-model="form.description" autocomplete="off"  :disable="dialogType== 'view'"/>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -39,50 +42,65 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import useAxios from '@/utils/useAxios';
 
-let tableData = ref<Array<{
+interface Book {
       id?: string
+      type: string
       name: string
-      author: string
-    }>>()
+      description: string
+}
+let tableData = ref<Array<Book>>()
 const dialogFormVisible = ref(false)
 const formLabelWidth = ref('120px')
 const form = ref({
+  type:'',
   name: '',
-  author: '',
+  description: '',
 })
 const title = ref('Add Book')
+const dialogType = ref('add')
+const axios=useAxios()
+
 
 const handleAdd = () => {
   dialogFormVisible.value = true
   title.value = 'Add Book'
-  console.log('add')
+  dialogType.value= 'add'
+  form.value={
+  type:'',
+  name: '',
+  description: '',
+}
 }
 const handleView = (row:any) => {
   dialogFormVisible.value = true
   title.value = 'View Book'
-  console.log('view',row,row.id)
+  dialogType.value= 'view'
+  form.value=row
 }
 const handleEdit = (row:any) => {
   dialogFormVisible.value = true
   title.value = 'Edit Book'
-  console.log('edit',row)
+  dialogType.value= 'edit'
+  form.value=row
 }
 const handleDelete = (row:any) => {
-  console.log('delete',row)
+  dialogType.value= 'delete'
+  form.value=row
 }
 const handleSubmit = () => {
-  console.log('submit')
+  let requast='/books'
   dialogFormVisible.value = false
 }
 
 // created
 const getList = () => {
-  tableData.value = [
-    { id: '1', name: 'Vue3', author: 'Evan' },
-    { id: '2', name: 'React', author: 'Jordan' },
-    { id: '3', name: 'Angular', author: 'Google' },
-  ]
+  axios.get('/api/books').then((res:any)=>{
+    console.log(222,res)
+  }).catch((err:any)=>{
+    console.log('/api/books',err)
+  })
 }
 getList()
 </script>

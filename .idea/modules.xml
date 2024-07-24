@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/java-test.iml" filepath="$PROJECT_DIR$/.idea/java-test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ssm整合加注释/ssm整合加注释.iml" filepath="$PROJECT_DIR$/ssm整合加注释/ssm整合加注释.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm02.iml" filepath="$PROJECT_DIR$/ssm02.iml" />
     </modules>
   </component>
 </project>
