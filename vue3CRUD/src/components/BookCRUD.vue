@@ -43,6 +43,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import useAxios from '@/utils/useAxios';
+import { ElMessage } from 'element-plus'
 
 interface Book {
       id?: string
@@ -54,6 +55,7 @@ let tableData = ref<Array<Book>>()
 const dialogFormVisible = ref(false)
 const formLabelWidth = ref('120px')
 const form = ref({
+  id:'',
   type:'',
   name: '',
   description: '',
@@ -68,6 +70,7 @@ const handleAdd = () => {
   title.value = 'Add Book'
   dialogType.value= 'add'
   form.value={
+    id:'',
   type:'',
   name: '',
   description: '',
@@ -90,16 +93,66 @@ const handleDelete = (row:any) => {
   form.value=row
 }
 const handleSubmit = () => {
-  let requast='/books'
+  if(dialogType=='add'){
+    fnAdd()
+  }else if(dialogType==='edit'){
+    fnUpdate()
+  }
+}
+
+const fnAdd=()=>{
+  axios.post('/api/books',{
+    data: form
+  }).then((res:Boolean)=>{
+    ElMessage({
+    message: '保存成功',
+    type: 'success',
+  })
+  getList()
   dialogFormVisible.value = false
+  }).catch((err:any)=>{
+    console.log('保存',err)
+  })
+}
+const fnUpdate=()=>{
+  axios.put('/api/books',{
+    data: form
+  }).then((res:Boolean)=>{
+    ElMessage({
+    message: '更新成功',
+    type: 'success',
+  })
+  getList()
+  dialogFormVisible.value = false
+  }).catch((err:any)=>{
+    console.log('更新',err)
+  })
+}
+const fnView=()=>{
+  axios.get(`/api/books/${form.value.id}`).then((res:Book)=>{
+    form.value=res
+  }).catch((err:any)=>{
+    console.log('删除',err)
+  })
+}
+const fnDelete=()=>{
+  axios.delete(`/api/books/${form.value.id}`).then((res:Boolean)=>{
+    ElMessage({
+    message: '删除成功',
+    type: 'success',
+  })
+  getList()
+  }).catch((err:any)=>{
+    console.log('删除',err)
+  })
 }
 
 // created
 const getList = () => {
-  axios.get('/api/books').then((res:any)=>{
-    console.log(222,res)
+  axios.get('/api/books').then((res:Array<Book>)=>{
+    tableData.value=res
   }).catch((err:any)=>{
-    console.log('/api/books',err)
+    console.log('获取列表',err)
   })
 }
 getList()
