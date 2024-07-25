@@ -18,5 +18,4 @@ export default defineConfig({
       '@': resolve(__dirname, 'src') // 设置 '@' 映射到 'src' 目录
     }
   }
-
 })
