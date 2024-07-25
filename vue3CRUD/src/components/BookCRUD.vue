@@ -120,7 +120,7 @@ const fnUpdate = () => {
 const fnView = (id) => {
   axios.get(`/api/books/${id}`).then((res) => {
     console.log(123,res)
-    form.value = res.data
+    form.value = res.data.data
   }).catch((err) => {
     console.log('删除', err)
   })
@@ -141,7 +141,7 @@ const fnDelete = (id) => {
 const getList = () => {
   axios.get('/api/books').then((res) => {
     console.log(1111,res)
-    tableData.value = res.data || []
+    tableData.value = res.data.data || []
   }).catch((err) => {
     console.log('获取列表', err)
   })

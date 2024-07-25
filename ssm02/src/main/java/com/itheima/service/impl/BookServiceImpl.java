@@ -16,19 +16,19 @@ public class BookServiceImpl implements BookService {
     @Override
     public Boolean save(Book book) {
         bookDao.save(book);
-        return null;
+        return true;
     }
 
     @Override
     public Boolean update(Book book) {
         bookDao.update(book);
-        return null;
+        return true;
     }
 
     @Override
     public Boolean delete(Integer id) {
         bookDao.delete(id);
-        return null;
+        return true;
     }
 
     @Override
