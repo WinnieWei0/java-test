@@ -3,9 +3,10 @@
     新增
   </el-button>
   <el-table :data="tableData" :border="true" style="width: 100%">
-    <el-table-column prop="id" label="Date" width="180" />
-    <el-table-column prop="name" label="Name" width="180" />
-    <el-table-column prop="author" label="Author" />
+    <el-table-column prop="id" label="id" />
+    <el-table-column prop="type" label="type" />
+    <el-table-column prop="name" label="name" />
+    <el-table-column prop="description" label="description" />
     <el-table-column fixed="right" label="Operations" width="200">
       <template #default="{ row }">
         <el-button link type="primary" size="small" @click="handleView(row)">
@@ -20,13 +21,13 @@
   <el-dialog v-model="dialogFormVisible" :title="title" width="500">
     <el-form :model="form">
       <el-form-item label="type" :label-width="formLabelWidth">
-        <el-input v-model="form.type" autocomplete="true" :disable="dialogType == 'view'" />
+        <el-input v-model="form.type" autocomplete="true" :disabled="!!(dialogType == 'view')" />
       </el-form-item>
       <el-form-item label="name" :label-width="formLabelWidth">
-        <el-input v-model="form.name" autocomplete="off" :disable="dialogType == 'view'" />
+        <el-input v-model="form.name" autocomplete="off" :disabled="dialogType == 'view'" />
       </el-form-item>
       <el-form-item label="description" :label-width="formLabelWidth">
-        <el-input v-model="form.description" autocomplete="off" :disable="dialogType == 'view'" />
+        <el-input v-model="form.description" autocomplete="off" :disabled="dialogType == 'view'" />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -67,18 +68,18 @@ const handleAdd = () => {
 const handleView = (row) => {
   title.value = 'View Book'
   dialogType.value = 'view'
-  form.value = row
+  fnView(row.id)
   dialogFormVisible.value = true
 }
 const handleEdit = (row) => {
   title.value = 'Edit Book'
   dialogType.value = 'edit'
-  form.value = row
+  form.value = {...row}
   dialogFormVisible.value = true
 }
 const handleDelete = (row) => {
   dialogType.value = 'delete'
-  form.value = row
+  fnDelete(row.id)
 }
 const handleSubmit = () => {
   if (dialogType.value == 'add') {
@@ -89,9 +90,8 @@ const handleSubmit = () => {
 }
 
 const fnAdd = () => {
-console.log(222,form.value)
   axios.post('/api/books', {
-    data: form.value
+    ...form.value
   }).then((res) => {
     ElMessage({
       message: '保存成功',
@@ -105,7 +105,7 @@ console.log(222,form.value)
 }
 const fnUpdate = () => {
   axios.put('/api/books', {
-    data: form
+    ...form.value
   }).then((res) => {
     ElMessage({
       message: '更新成功',
@@ -117,15 +117,16 @@ const fnUpdate = () => {
     console.log('更新', err)
   })
 }
-const fnView = () => {
-  axios.get(`/api/books/${form.value?.id}`).then((res) => {
-    form.value = res
+const fnView = (id) => {
+  axios.get(`/api/books/${id}`).then((res) => {
+    console.log(123,res)
+    form.value = res.data
   }).catch((err) => {
     console.log('删除', err)
   })
 }
-const fnDelete = () => {
-  axios.delete(`/api/books/${form.value?.id}`).then((res) => {
+const fnDelete = (id) => {
+  axios.delete(`/api/books/${id}`).then((res) => {
     ElMessage({
       message: '删除成功',
       type: 'success',

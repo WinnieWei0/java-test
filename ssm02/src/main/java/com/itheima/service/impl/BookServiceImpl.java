@@ -38,8 +38,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> getAll() {
-        System.out.println(2222);
-        System.out.println(bookDao.getAll());
         return bookDao.getAll();
     }
 }

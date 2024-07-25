@@ -15,6 +15,8 @@ public class BookController {
 
     @PostMapping
     public Boolean save(@RequestBody Book book){
+        System.out.println(333);
+        System.out.println(book);
         return bookService.save(book);
     }
 
@@ -35,8 +37,6 @@ public class BookController {
 
     @GetMapping
     public List<Book> getAll(){
-        System.out.println(1111);
-        System.out.println(bookService.getAll());
         return bookService.getAll();
     }
 }
