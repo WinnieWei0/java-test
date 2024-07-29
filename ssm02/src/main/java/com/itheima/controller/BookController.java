@@ -43,9 +43,11 @@ public class BookController {
 
     @GetMapping
     public Result getAll(){
+        int i=1/0;
         List<Book> bookList= bookService.getAll();
         Integer code=bookList!=null?GET_SUCCESS:GET_FAILURE;
         String msg=bookList!=null?"success":"fail";
+        System.out.println(bookList);
         return new Result(GET_SUCCESS,bookList,"success");
     }
 }

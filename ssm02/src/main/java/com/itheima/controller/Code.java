@@ -9,4 +9,8 @@ public class Code {
     public static final Integer UPDATE_FAILURE = 20030;
     public static final Integer GET_SUCCESS = 20041;
     public static final Integer GET_FAILURE = 20040;
+
+    public static final Integer BUSINESS_ERR = 50001;
+    public static final Integer SYSTEM_TIMEOUT_ERR = 50002;
+    public static final Integer SYSTEM_UNKNOWN_ERR = 50003;
 }
